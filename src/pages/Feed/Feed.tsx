@@ -1,30 +1,46 @@
-import { Stack } from '@mui/material';
+import { useState } from 'react';
+import { Stack, Typography } from '@mui/material';
 import FlexBox from '../../components/BuildingBlocks/FlexBox/FlexBox';
 import PostCard from '../../components/PostCard.tsx/PostCard';
-import usePostsFeed from '../../api/usePostsFeed';
-import mock from '../../api/mock.json';
-import { PostObject } from '../../types/types';
+import { useMockData } from '../../hooks/useMockData';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useResetScrollerPosition } from '../../hooks/useResetScrollerPosition';
+// import usePostsFeed from '../../api/usePostsFeed';
+
+const ITEMS_PER_PAGE = 6;
 
 const Feed = () => {
+  const [skip, setSkip] = useState<number>(ITEMS_PER_PAGE);
+  const { mock, hasMore } = useMockData(skip);
+  useResetScrollerPosition();
   // CORS issues, i'll use the mock data instead;
-  // const { data, isLoading } = usePostsFeed(6);
+  // const { data, isLoading } = usePostsFeed(skip);
 
-  console.log(mock as PostObject[]);
+  const handleNextRequest = () => {
+    setSkip((prev) => prev + ITEMS_PER_PAGE);
+  };
 
   return (
     <Stack>
-      {mock?.map((post) => (
-        <FlexBox key={post.id} sx={{ padding: { sm: '0 10px', md: '0 80px', lg: '0 260px' } }}>
-          <PostCard
-            {...post}
-            avatar={post.avatar}
-            comments={post.comments}
-            date={post.date}
-            didLike={post.didLike}
-            id={post.id}
-          />
-        </FlexBox>
-      ))}
+      <InfiniteScroll
+        dataLength={mock?.length}
+        next={handleNextRequest}
+        hasMore={hasMore}
+        loader={<Typography variant="h2">Loading</Typography>}
+      >
+        {mock?.map((post) => (
+          <FlexBox key={post.id} sx={{ padding: { sm: '0 10px', md: '0 80px', lg: '0 260px' } }}>
+            <PostCard
+              {...post}
+              avatar={post.avatar}
+              comments={post.comments}
+              date={post.date}
+              didLike={post.didLike}
+              id={post.id}
+            />
+          </FlexBox>
+        ))}
+      </InfiniteScroll>
     </Stack>
   );
 };

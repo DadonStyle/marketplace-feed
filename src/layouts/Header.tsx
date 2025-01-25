@@ -12,7 +12,10 @@ import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const naviget = useNavigate();
-  const handleLogoClick = () => naviget('/');
+  const handleLogoClick = () => {
+    naviget('/');
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  };
 
   return (
     <header style={{ position: 'sticky', top: 0, zIndex: 1000 }}>
