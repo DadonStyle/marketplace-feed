@@ -1,0 +1,40 @@
+import FlexBox from '../components/BuildingBlocks/FlexBox/FlexBox';
+import Logo from '../assets/logo.svg?react';
+import SearchBar from '../components/SearchBar/SearchBar';
+import NavButton from '../components/Buttons/NavButton/Index';
+import CircleImage from '../components/CircleImage/CircleImage';
+// assets
+import HomeIcon from '../assets/icons/home-svg.svg?react';
+import MessageCircleIcon from '../assets/icons/message-circle-svg.svg?react';
+import BellIcon from '../assets/icons/bell-svg.svg?react';
+import testImage1 from '../assets/test-img1.png';
+
+const Header = () => {
+  return (
+    <FlexBox
+      sx={{
+        background: (theme) => theme.palette.background.paper,
+        height: '58px',
+        width: '100%',
+        padding: { sm: '0 10px', md: '0 80px', lg: '0 260px' },
+      }}
+      alignItems="center"
+      justifyContent="space-between"
+    >
+      <FlexBox gap={1}>
+        <Logo />
+        <FlexBox>
+          <SearchBar />
+        </FlexBox>
+      </FlexBox>
+      <FlexBox height="100%" gap={1}>
+        <NavButton icon={<HomeIcon />} label="Home" path="/Feed" />
+        <NavButton icon={<MessageCircleIcon />} label="Messaging" path="/Messaging" />
+        <NavButton icon={<BellIcon />} label="Notifications" path="/Notifications" />
+        <CircleImage imgSrc={testImage1} />
+      </FlexBox>
+    </FlexBox>
+  );
+};
+
+export default Header;

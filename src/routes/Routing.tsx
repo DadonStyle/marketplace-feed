@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import Feed from '../pages/Feed';
+import Feed from '../pages/Feed/Feed';
 
 const Routing = () => {
   return (

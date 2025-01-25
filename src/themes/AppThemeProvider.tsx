@@ -3,10 +3,19 @@ import React from 'react';
 
 declare module '@mui/material/styles/createPalette' {
   interface PaletteOptions {
-    headingGray?: {
+    headingGray: {
       main: string;
     };
-    linkBlue?: {
+    linkBlue: {
+      main: string;
+    };
+  }
+
+  interface Palette {
+    headingGray: {
+      main: string;
+    };
+    linkBlue: {
       main: string;
     };
   }
@@ -33,15 +42,15 @@ export const AppThemeProvider: React.FC<Props> = ({ children }) => {
         values: {
           xs: 0,
           sm: 0,
-          md: 700,
+          md: 800,
           lg: 1280,
           xl: 1920,
         },
       },
       typography: {
-        h1: { fontSize: '20px', fontWeight: 500, color: '#134DE4', fontFamily: 'Poppins, DM Sans, sans-serif' },
-        h2: { fontSize: '18px', fontWeight: 500, color: '#BCD5FF', fontFamily: 'Poppins, DM Sans, sans-serif' },
-        h3: { fontSize: '16px', fontWeight: 500, color: '#BCD5FF', fontFamily: 'Poppins, DM Sans, sans-serif' },
+        h1: { fontSize: '20px', fontWeight: 500, fontFamily: 'Poppins, DM Sans, sans-serif' },
+        h2: { fontSize: '18px', fontWeight: 500, fontFamily: 'Poppins, DM Sans, sans-serif' },
+        h3: { fontSize: '14px', fontWeight: 500, fontFamily: 'Poppins, DM Sans, sans-serif' },
         body1: { fontSize: '14px', fontWeight: 400, color: '#000', fontFamily: 'DM Sans, sans-serif' },
         body2: { fontSize: '12px', fontWeight: 400, color: '#999', fontFamily: 'DM Sans, sans-serif' },
       },
