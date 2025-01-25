@@ -37,9 +37,7 @@ const NavButton: FC<NavButtonProps> = ({ icon, label, path }) => {
   return (
     <CustomButton onClick={handleButtonNavigation}>
       <FlexBox>{icon}</FlexBox>
-      <Typography variant="h3" color="(theme) => theme.platte.secondary.main">
-        {label}
-      </Typography>
+      <Typography variant="h3">{label}</Typography>
     </CustomButton>
   );
 };
