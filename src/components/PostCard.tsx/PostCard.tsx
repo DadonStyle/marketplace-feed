@@ -1,7 +1,7 @@
 import { Card, CardActions, Typography, Link, Stack } from '@mui/material';
 import FlexBox from '../BuildingBlocks/FlexBox/FlexBox';
 import CircleImage from '../CircleImage/CircleImage';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { PostObject } from '../../types/types';
 import { getRelativeTime } from '../../utils/utils';
 import TransparentButton from '../Buttons/TransparentButton';
@@ -9,11 +9,15 @@ import ImageCarousel from '../ImageCarousel/ImageCarousel';
 // assets
 import LikeCountIcon from '../../assets/icons/like-count-svg.svg?react';
 import CommentIcon from '../../assets/icons/comment-buble-svg.svg?react';
-import LikeButton from '../Buttons/LikeButton/LikeButton';
+import LikeIcon from '../../assets/icons/like-svg.svg?react';
 
 interface PostCardProps extends PostObject {}
 
 const PostCard: FC<PostCardProps> = ({ ...props }) => {
+  const [isLiked, setIsLiked] = useState<boolean>(false);
+
+  const handleLikeClick = () => setIsLiked((prev) => !prev);
+
   return (
     <Card sx={{ width: '100%', height: '100%', margin: '20px auto', boxShadow: 3 }}>
       <Stack padding="24px 24px 12px 24px" spacing={1}>
@@ -46,7 +50,7 @@ const PostCard: FC<PostCardProps> = ({ ...props }) => {
             variant="body2"
             sx={{ color: (theme) => theme.palette.lightGray.main }}
           >
-            <LikeCountIcon /> {props.likes} Likes
+            <LikeCountIcon /> {isLiked ? props.likes + 1 : props.likes} Likes
           </Typography>
           <Typography
             display="flex"
@@ -58,7 +62,10 @@ const PostCard: FC<PostCardProps> = ({ ...props }) => {
           </Typography>
         </FlexBox>
         <CardActions>
-          <LikeButton />
+          <TransparentButton handleOnClick={handleLikeClick} isActive={isLiked}>
+            <LikeIcon />
+            <Typography variant="body2">Like</Typography>
+          </TransparentButton>
           <TransparentButton handleOnClick={() => {}}>
             <CommentIcon />
             <Typography variant="body2">Comment</Typography>

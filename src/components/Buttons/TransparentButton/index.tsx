@@ -24,7 +24,6 @@ const StyledTransparentButton = styled(Button, {
   },
   '&:hover': {
     color: theme.palette.linkBlue.main,
-    '--variant-textBg': 'unset',
     '& svg': {
       stroke: theme.palette.linkBlue.main,
     },
