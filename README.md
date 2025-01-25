@@ -1,33 +1,14 @@
-## this is not the original repo, credit goes to this repo:
+## `Highlights`
 
-## - emre-cil/vite-mui-ts -
+1. Feed with infinite scroll
+2. Scroll tracking with beacon API
+3. Mui fully responsive design
+4. Cached api calls (react-query)
 
-## vite-mui-ts boilerplate
+## `Installations` 🔧
 
-TypeScript + React + Redux + MUI + RRD + ESLint + Prettier
+1. After cloning, `npm i` to install the dependencies in the project.
+2. npm run dev and you are good to go 🚀
 
-### Getting Started
-
-#### Install Dependencies
-
-```
-pnpm install
-```
-
-### Scripts
-
-| Script        | Description                        |
-| ------------- | ---------------------------------- |
-| pnpm dev      | Runs the application.              |
-| pnpm build    | Create builds for the application. |
-| pnpm preview  | Runs the Vite preview              |
-| pnpm lint     | Display eslint errors              |
-| pnpm lint:fix | Fix the eslint errors              |
-| pnpm format   | Runs prettier for all files        |
-| pnpm test     | Run tests                          |
-
-### Check List
-
-```
-
-```
+or just visit the deployed url:
+[https://marketplace-feed.vercel.app/](https://marketplace-feed.vercel.app/)
