@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { Stack, Typography } from '@mui/material';
 import FlexBox from '../../components/BuildingBlocks/FlexBox/FlexBox';
 import PostCard from '../../components/PostCard.tsx/PostCard';

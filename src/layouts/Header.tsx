@@ -3,12 +3,12 @@ import Logo from '../assets/logo.svg?react';
 import SearchBar from '../components/SearchBar/SearchBar';
 import NavButton from '../components/Buttons/NavButton/Index';
 import CircleImage from '../components/CircleImage/CircleImage';
+import { useNavigate } from 'react-router-dom';
 // assets
 import HomeIcon from '../assets/icons/home-svg.svg?react';
 import MessageCircleIcon from '../assets/icons/message-circle-svg.svg?react';
 import BellIcon from '../assets/icons/bell-svg.svg?react';
 import testImage1 from '../assets/test-img1.png';
-import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const naviget = useNavigate();
