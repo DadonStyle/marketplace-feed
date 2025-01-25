@@ -11,9 +11,9 @@ import BellIcon from '../assets/icons/bell-svg.svg?react';
 import testImage1 from '../assets/test-img1.png';
 
 const Header = () => {
-  const naviget = useNavigate();
+  const navigate = useNavigate();
   const handleLogoClick = () => {
-    naviget('/');
+    navigate('/');
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   };
 
