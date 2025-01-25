@@ -9,6 +9,9 @@ declare module '@mui/material/styles/createPalette' {
     linkBlue: {
       main: string;
     };
+    lightGray: {
+      main: string;
+    };
   }
 
   interface Palette {
@@ -16,6 +19,9 @@ declare module '@mui/material/styles/createPalette' {
       main: string;
     };
     linkBlue: {
+      main: string;
+    };
+    lightGray: {
       main: string;
     };
   }
@@ -32,9 +38,10 @@ export const AppThemeProvider: React.FC<Props> = ({ children }) => {
         primary: { main: '#000' },
         secondary: { main: '#2DB8A1' },
         headingGray: { main: '#949796' },
-        linkBlue: { main: '#F4F9FF' },
+        lightGray: { main: '#737877' },
+        linkBlue: { main: '#3969A0' },
         background: {
-          default: '#f6f8f7',
+          default: '#F6F8F7',
           paper: '#FFF',
         },
       },
@@ -50,11 +57,25 @@ export const AppThemeProvider: React.FC<Props> = ({ children }) => {
       typography: {
         h1: { fontSize: '20px', fontWeight: 500, fontFamily: 'Poppins, DM Sans, sans-serif' },
         h2: { fontSize: '18px', fontWeight: 500, fontFamily: 'Poppins, DM Sans, sans-serif' },
-        h3: { fontSize: '14px', fontWeight: 500, fontFamily: 'Poppins, DM Sans, sans-serif' },
-        body1: { fontSize: '14px', fontWeight: 400, color: '#000', fontFamily: 'DM Sans, sans-serif' },
-        body2: { fontSize: '12px', fontWeight: 400, color: '#999', fontFamily: 'DM Sans, sans-serif' },
+        h3: { fontSize: '16px', fontWeight: 500, fontFamily: 'Poppins, DM Sans, sans-serif' },
+        body1: { fontSize: '16px', fontWeight: 500, fontFamily: 'DM Sans, sans-serif' },
+        body2: {
+          fontSize: '14px',
+          fontWeight: 400,
+          fontFamily: 'DM Sans, sans-serif',
+          textWrap: 'balance',
+        },
       },
       components: {
+        MuiLink: {
+          styleOverrides: {
+            root: {
+              cursor: 'pointer',
+              textDecoration: 'none',
+              '&:hover': { textDecoration: 'underline' },
+            },
+          },
+        },
         MuiCssBaseline: {
           styleOverrides: {
             body: {

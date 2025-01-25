@@ -8,7 +8,6 @@ interface CircleImageProps {
 }
 
 const CircleImage: FC<CircleImageProps> = ({ imgSrc }) => {
-  // logic can be enlagring the image on click or link to a profile, currently out of scope
   return (
     <FlexBox>
       {imgSrc ? (
