@@ -12,7 +12,7 @@ const CircleImage: FC<CircleImageProps> = ({ imgSrc }) => {
   return (
     <FlexBox>
       {imgSrc ? (
-        <img height={40} width={40} src={imgSrc} alt="profile" />
+        <img style={{ borderRadius: '50%' }} height={40} width={40} src={imgSrc} alt="profile" />
       ) : (
         <img height={40} width={40} src={fallbackImg} alt="fallback" />
       )}
