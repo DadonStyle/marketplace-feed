@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { Menu, MenuItem, IconButton, useMediaQuery, Button, Stack } from '@mui/material';
 import FlexBox from '../components/BuildingBlocks/FlexBox/FlexBox';
 import Logo from '../assets/logo.svg?react';
 import SearchBar from '../components/SearchBar/SearchBar';
@@ -9,12 +11,24 @@ import HomeIcon from '../assets/icons/home-svg.svg?react';
 import MessageCircleIcon from '../assets/icons/message-circle-svg.svg?react';
 import BellIcon from '../assets/icons/bell-svg.svg?react';
 import testImage1 from '../assets/test-img1.png';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Header = () => {
   const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const isMobile = useMediaQuery('(max-width:800px)');
+
   const handleLogoClick = () => {
     navigate('/');
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  };
+
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -35,12 +49,31 @@ const Header = () => {
             <SearchBar />
           </FlexBox>
         </FlexBox>
-        <FlexBox height="100%" gap={1}>
-          <NavButton icon={<HomeIcon />} label="Home" path="/" />
-          <NavButton icon={<MessageCircleIcon />} label="Messaging" path="/messaging" />
-          <NavButton icon={<BellIcon />} label="Notifications" path="/notifications" />
-          <CircleImage imgSrc={testImage1} />
-        </FlexBox>
+        {isMobile ? (
+          <>
+            <IconButton color="inherit" onClick={handleMenuClick}>
+              <MenuIcon />
+            </IconButton>
+            <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
+              <MenuItem onClick={handleMenuClose}>
+                <NavButton icon={<HomeIcon />} label="Home" path="/" />
+              </MenuItem>
+              <MenuItem onClick={handleMenuClose}>
+                <NavButton icon={<MessageCircleIcon />} label="Messaging" path="/messaging" />
+              </MenuItem>
+              <MenuItem onClick={handleMenuClose}>
+                <NavButton icon={<BellIcon />} label="Notifications" path="/notifications" />
+              </MenuItem>
+            </Menu>
+          </>
+        ) : (
+          <FlexBox height="100%" gap={1}>
+            <NavButton icon={<HomeIcon />} label="Home" path="/" />
+            <NavButton icon={<MessageCircleIcon />} label="Messaging" path="/messaging" />
+            <NavButton icon={<BellIcon />} label="Notifications" path="/notifications" />
+            <CircleImage imgSrc={testImage1} />
+          </FlexBox>
+        )}
       </FlexBox>
     </header>
   );
