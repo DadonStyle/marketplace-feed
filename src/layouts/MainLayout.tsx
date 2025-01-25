@@ -4,7 +4,7 @@ import Header from './Header';
 
 const MainLayout = () => {
   return (
-    <Stack>
+    <Stack position="relative" overflow="visible">
       <Header />
       <main>
         <Outlet />

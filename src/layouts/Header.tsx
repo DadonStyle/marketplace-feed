@@ -8,32 +8,38 @@ import HomeIcon from '../assets/icons/home-svg.svg?react';
 import MessageCircleIcon from '../assets/icons/message-circle-svg.svg?react';
 import BellIcon from '../assets/icons/bell-svg.svg?react';
 import testImage1 from '../assets/test-img1.png';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const naviget = useNavigate();
+  const handleLogoClick = () => naviget('/');
+
   return (
-    <FlexBox
-      sx={{
-        background: (theme) => theme.palette.background.paper,
-        height: '58px',
-        width: '100%',
-        padding: { sm: '0 10px', md: '0 80px', lg: '0 260px' },
-      }}
-      alignItems="center"
-      justifyContent="space-between"
-    >
-      <FlexBox gap={1}>
-        <Logo />
-        <FlexBox>
-          <SearchBar />
+    <header style={{ position: 'sticky', top: 0, zIndex: 1000 }}>
+      <FlexBox
+        sx={{
+          background: (theme) => theme.palette.background.paper,
+          height: '58px',
+          width: '100%',
+          padding: { sm: '0 10px', md: '0 80px', lg: '0 260px' },
+        }}
+        alignItems="center"
+        justifyContent="space-between"
+      >
+        <FlexBox gap={1}>
+          <Logo style={{ cursor: 'pointer' }} onClick={handleLogoClick} />
+          <FlexBox>
+            <SearchBar />
+          </FlexBox>
+        </FlexBox>
+        <FlexBox height="100%" gap={1}>
+          <NavButton icon={<HomeIcon />} label="Home" path="/" />
+          <NavButton icon={<MessageCircleIcon />} label="Messaging" path="/messaging" />
+          <NavButton icon={<BellIcon />} label="Notifications" path="/notifications" />
+          <CircleImage imgSrc={testImage1} />
         </FlexBox>
       </FlexBox>
-      <FlexBox height="100%" gap={1}>
-        <NavButton icon={<HomeIcon />} label="Home" path="/Feed" />
-        <NavButton icon={<MessageCircleIcon />} label="Messaging" path="/Messaging" />
-        <NavButton icon={<BellIcon />} label="Notifications" path="/Notifications" />
-        <CircleImage imgSrc={testImage1} />
-      </FlexBox>
-    </FlexBox>
+    </header>
   );
 };
 

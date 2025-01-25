@@ -1,11 +1,15 @@
 import { Button, styled, Typography } from '@mui/material';
 import { FC, ReactNode } from 'react';
 import FlexBox from '../../BuildingBlocks/FlexBox/FlexBox';
+import { useNavigate } from 'react-router-dom';
 
-const CustomButton = styled(Button)(({ theme }) => ({
+const StyledNavButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== 'isActive',
+})<{ isActive?: boolean }>(({ theme, isActive }) => ({
   gap: '6px',
   backgroundColor: 'none',
-  color: theme.palette.headingGray.main,
+  color: isActive ? theme.palette.secondary.main : theme.palette.headingGray.main,
+  borderBottom: isActive ? `2px solid ${theme.palette.secondary.main}` : 'none',
   textTransform: 'none',
   fontSize: '16px',
   fontWeight: 500,
@@ -27,18 +31,19 @@ interface NavButtonProps {
   icon: ReactNode;
   label: string;
   path: string;
+  isActive?: boolean;
 }
 
 const NavButton: FC<NavButtonProps> = ({ icon, label, path }) => {
-  const handleButtonNavigation = () => {
-    // navigation logic using the path prop, currently out of scope
-  };
+  const navigate = useNavigate();
+  const handleButtonNavigation = () => navigate(path);
+  const handleIsSelected = () => window.location.pathname.toLowerCase() === path.toLowerCase();
 
   return (
-    <CustomButton onClick={handleButtonNavigation}>
+    <StyledNavButton isActive={handleIsSelected()} onClick={handleButtonNavigation}>
       <FlexBox>{icon}</FlexBox>
       <Typography variant="h3">{label}</Typography>
-    </CustomButton>
+    </StyledNavButton>
   );
 };
 

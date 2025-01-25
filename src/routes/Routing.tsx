@@ -8,7 +8,6 @@ const Routing = () => {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Feed />} />
-        <Route path="feed" element={<Feed />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
