@@ -1,34 +1,26 @@
-import { useState } from 'react';
+import { FC } from 'react';
 import { Stack, Typography } from '@mui/material';
 import FlexBox from '../../components/BuildingBlocks/FlexBox/FlexBox';
 import PostCard from '../../components/PostCard.tsx/PostCard';
-import { useMockData } from '../../hooks/useMockData';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useResetScrollerPosition } from '../../hooks/useResetScrollerPosition';
-import usePostViewTracking from '../../hooks/usePostTrack';
+import { PostObject } from '../../types/types';
 
-const ITEMS_PER_PAGE = 6;
+interface FeedPageProps {
+  nextPosts: PostObject[];
+  hasMore: boolean;
+  handleNextRequest: () => void;
+}
 
-const Feed = () => {
-  const [skip, setSkip] = useState<number>(ITEMS_PER_PAGE);
-  const { mock, hasMore } = useMockData(skip);
-  // const { data, isLoading } = usePostsFeed(skip); CORS issues, i'll create and use mock data instead
-  usePostViewTracking(mock);
-  useResetScrollerPosition();
-
-  const handleNextRequest = () => {
-    setSkip((prev) => prev + ITEMS_PER_PAGE);
-  };
-
+const FeedPage: FC<FeedPageProps> = ({ nextPosts, hasMore, handleNextRequest }) => {
   return (
     <Stack>
       <InfiniteScroll
-        dataLength={mock?.length}
+        dataLength={nextPosts.length}
         next={handleNextRequest}
         hasMore={hasMore}
-        loader={<Typography variant="h2">Loading</Typography>}
+        loader={<FlexBox>Loading</FlexBox>}
       >
-        {mock?.map((post) => (
+        {nextPosts?.map((post) => (
           <FlexBox
             key={post.id}
             sx={{ padding: { sm: '0 10px', md: '0 80px', lg: '0 260px' } }}
@@ -50,4 +42,4 @@ const Feed = () => {
   );
 };
 
-export default Feed;
+export default FeedPage;

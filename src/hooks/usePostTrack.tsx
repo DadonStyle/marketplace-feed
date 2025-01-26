@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Axios } from '../api/usePostsFeed';
 
 const usePostViewTracking = (mock: Array<any>) => {
   const ViewsTracker = useRef(new Set<string>());
@@ -12,8 +13,9 @@ const usePostViewTracking = (mock: Array<any>) => {
 
   const sendBeaconCall = (postId: string) => {
     if (!ViewsTracker.current.has(postId)) {
-      // 403, no access to the backend
-      navigator.sendBeacon(`https://backend.tedooo.com/?itemId=${postId}`, JSON.stringify({ postId }));
+      Axios.get(`https://backend.tedooo.com/?itemId=${postId}`); // works
+      // only POST requests, throws 404;
+      // navigator.sendBeacon(`https://backend.tedooo.com/?itemId=${postId}`);
       ViewsTracker.current.add(postId);
 
       // after refresh persist the data
