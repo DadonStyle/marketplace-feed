@@ -24,7 +24,7 @@ const FeedWrapper = () => {
     }
   }, [data]);
 
-  if (isLoading && posts.length !== 0) {
+  if (isLoading && posts.length === 0) {
     return (
       <FlexBox width="100%" justifyContent="center" alignItems="center" padding={5}>
         <Typography variant="h2">Loading</Typography>
@@ -32,7 +32,7 @@ const FeedWrapper = () => {
     );
   }
 
-  if (!isLoading && posts.length !== 0) {
+  if (!isLoading && posts.length === 0) {
     return (
       <FlexBox width="100%" justifyContent="center" alignItems="center" paddingTop={5}>
         <Typography variant="h2">No posts available</Typography>
